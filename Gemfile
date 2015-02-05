@@ -39,6 +39,9 @@ gem 'cancan'
 # Use RailsAdmin for CRUD managerment
 gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
 
+# Activity tracking
+gem 'public_activity'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

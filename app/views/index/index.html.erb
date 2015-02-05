@@ -4,7 +4,8 @@
 # and open the template in the editor.
 %>
 
-<%= "index.html" %>
+<%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
+
 <p>
-    <%= current_user.email %>
+	<%= debug(@activities) %>
 </p>
