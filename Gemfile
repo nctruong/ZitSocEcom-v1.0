@@ -41,6 +41,7 @@ gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
 
 # Activity tracking
 gem 'public_activity'
+gem 'paper_trail'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

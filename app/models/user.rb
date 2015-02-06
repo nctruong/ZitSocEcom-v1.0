@@ -4,8 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  include PublicActivity::Model
-  tracked
+  has_paper_trail
 
   belongs_to :user_role
 end
