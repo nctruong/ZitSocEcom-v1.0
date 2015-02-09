@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @product_unit_association.product %>
+</p>
+
+<p>
+  <strong>Product unit:</strong>
+  <%= @product_unit_association.product_unit %>
+</p>
+
+<p>
+  <strong>Isdefault:</strong>
+  <%= @product_unit_association.isDefault %>
+</p>
+
+<p>
+  <strong>Ratio:</strong>
+  <%= @product_unit_association.ratio %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @product_unit_association.creator %>
+</p>
+
+<%= link_to 'Edit', edit_product_unit_association_path(@product_unit_association) %> |
+<%= link_to 'Back', product_unit_associations_path %>

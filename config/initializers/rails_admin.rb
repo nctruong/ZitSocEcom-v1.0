@@ -9,6 +9,8 @@ RailsAdmin.config do |config|
 
   config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
 
+  config.included_models = ["Appconfig", "User", "UserRole", "Permission", "Product", "ProductCategory", "ProductUnit", "ProductUnitAssociation", "Warehouse", "Supplier", "SupplierOrder"] 
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -21,7 +23,7 @@ RailsAdmin.config do |config|
     show_in_app
 
     ## With an audit adapter, you can add:
-    # history_index
-    # history_show
+    history_index
+    history_show
   end
 end

@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
   
+  resources :supplier_orders
+
+  resources :suppliers
+
+  resources :product_unit_associations
+
+  resources :products
+
+  resources :warehouses
+
+  resources :product_categories
+
   resources :product_units
 
   resources :user_roles
