@@ -9,7 +9,7 @@ RailsAdmin.config do |config|
 
   config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
 
-  config.included_models = ["Appconfig", "User", "UserRole", "Permission", "Product", "ProductCategory", "ProductUnit", "ProductUnitAssociation", "Warehouse", "Supplier", "SupplierOrder"] 
+  # config.included_models = ["Appconfig", "User", "UserRole", "Permission", "Product", "ProductCategory", "ProductUnit", "ProductUnitAssociation", "Warehouse", "Supplier", "SupplierOrder"] 
 
   config.actions do
     dashboard                     # mandatory

@@ -6,4 +6,6 @@ class Product < ActiveRecord::Base
   has_many :product_categories, through: :product_category_associations
   has_many :product_unit_associations
   has_many :product_units, through: :product_unit_associations
+  has_many :supplier_product_associations
+  has_many :suppliers, through: :supplier_product_associations
 end

@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @customer_order.customer %>
+</p>
+
+<p>
+  <strong>Total excl:</strong>
+  <%= @customer_order.total_excl %>
+</p>
+
+<p>
+  <strong>Total incl:</strong>
+  <%= @customer_order.total_incl %>
+</p>
+
+<p>
+  <strong>Reduce price:</strong>
+  <%= @customer_order.reduce_price %>
+</p>
+
+<p>
+  <strong>Reduce percent:</strong>
+  <%= @customer_order.reduce_percent %>
+</p>
+
+<p>
+  <strong>Total reduced:</strong>
+  <%= @customer_order.total_reduced %>
+</p>
+
+<p>
+  <strong>Prepaid:</strong>
+  <%= @customer_order.prepaid %>
+</p>
+
+<p>
+  <strong>Created:</strong>
+  <%= @customer_order.created %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @customer_order.status %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @customer_order.note %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @customer_order.creator %>
+</p>
+
+<%= link_to 'Edit', edit_customer_order_path(@customer_order) %> |
+<%= link_to 'Back', customer_orders_path %>

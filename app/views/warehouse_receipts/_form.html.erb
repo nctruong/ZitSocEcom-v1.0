@@ -1,0 +1,57 @@
+<%= form_for(@warehouse_receipt) do |f| %>
+  <% if @warehouse_receipt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@warehouse_receipt.errors.count, "error") %> prohibited this warehouse_receipt from being saved:</h2>
+
+      <ul>
+      <% @warehouse_receipt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :warehouse_id %><br>
+    <%= f.text_field :warehouse_id %>
+  </div>
+  <div class="field">
+    <%= f.label :supplier_order_id %><br>
+    <%= f.text_field :supplier_order_id %>
+  </div>
+  <div class="field">
+    <%= f.label :total_excl %><br>
+    <%= f.number_field :total_excl %>
+  </div>
+  <div class="field">
+    <%= f.label :total_incl %><br>
+    <%= f.number_field :total_incl %>
+  </div>
+  <div class="field">
+    <%= f.label :reduce_price %><br>
+    <%= f.number_field :reduce_price %>
+  </div>
+  <div class="field">
+    <%= f.label :reduce_percent %><br>
+    <%= f.number_field :reduce_percent %>
+  </div>
+  <div class="field">
+    <%= f.label :total_reduced %><br>
+    <%= f.number_field :total_reduced %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :created %><br>
+    <%= f.datetime_select :created %>
+  </div>
+  <div class="field">
+    <%= f.label :creator_id %><br>
+    <%= f.text_field :creator_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

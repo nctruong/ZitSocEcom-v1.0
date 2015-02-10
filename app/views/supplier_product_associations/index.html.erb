@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Supplier Product Associations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Supplier</th>
+      <th>Product</th>
+      <th>Product unit</th>
+      <th>Price</th>
+      <th>Creator</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @supplier_product_associations.each do |supplier_product_association| %>
+      <tr>
+        <td><%= supplier_product_association.supplier %></td>
+        <td><%= supplier_product_association.product %></td>
+        <td><%= supplier_product_association.product_unit %></td>
+        <td><%= supplier_product_association.price %></td>
+        <td><%= supplier_product_association.creator %></td>
+        <td><%= link_to 'Show', supplier_product_association %></td>
+        <td><%= link_to 'Edit', edit_supplier_product_association_path(supplier_product_association) %></td>
+        <td><%= link_to 'Destroy', supplier_product_association, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Supplier product association', new_supplier_product_association_path %>

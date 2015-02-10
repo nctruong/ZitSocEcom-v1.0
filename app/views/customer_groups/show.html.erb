@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @customer_group.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @customer_group.description %>
+</p>
+
+<p>
+  <strong>Reduce percent:</strong>
+  <%= @customer_group.reduce_percent %>
+</p>
+
+<p>
+  <strong>Visible:</strong>
+  <%= @customer_group.visible %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @customer_group.creator %>
+</p>
+
+<%= link_to 'Edit', edit_customer_group_path(@customer_group) %> |
+<%= link_to 'Back', customer_groups_path %>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  warehouse_id: 
+  supplier_order_id: 
+  total_excl: 1
+  total_incl: 1
+  reduce_price: 1
+  reduce_percent: 1
+  total_reduced: 1
+  status: 1
+  created: 2015-02-09 16:53:27
+  creator_id: 
+
+two:
+  warehouse_id: 
+  supplier_order_id: 
+  total_excl: 1
+  total_incl: 1
+  reduce_price: 1
+  reduce_percent: 1
+  total_reduced: 1
+  status: 1
+  created: 2015-02-09 16:53:27
+  creator_id: 

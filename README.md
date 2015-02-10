@@ -5,7 +5,7 @@
 - users
 - user_roles
 - permissions
-	
+
 - product_units
 	title
 	description:text
@@ -92,7 +92,7 @@
 	afterpaid:integer
 	note:text
 
-- supplier_debit_logs
+- supplier_order_paid_logs
 	supplier_paid_log:references
 	supplier_order:references
 	beforpaid:integer
@@ -104,7 +104,69 @@
 	product:references
 	product_unit:references
 	price:integer
+
+
+- customers
+	code
+	title
+	address
+	phone
+	fax
+	email
+	taxcode
+	debit:integer
+	visible:boolean
+
+- customer_groups
+	title
+	description:text
+	reduce_percent:integer
+	visible:boolean
+
+- customer_group_associations
+	customer:references
+	customer_group:references
+
+- customer_orders
+	customer:references
+	total_excl:integer
+	total_incl:integer
+	reduce_price:integer
+	reduce_percent:integer
+	total_reduced:integer
+	prepaid:integer
+	created:datetime
+	status:string
 	note:text
+
+- customer_order_details
+	customer_order:references
+	warehouse:references
+	product:references
+	product_unit:references
+	quanity:integer
+	price:integer
+	reduce_price:integer
+	reduce_percent:integer
+	tax:integer
+	subtotal:integer
+	subtotal_reduced:integer
+	subtotal_taxincl:integer
+	note:text
+
+- customer_paid_logs
+	customer:references
+	beforepaid:integer
+	paid:integer
+	afterpaid:integer
+	note:text
+
+- customer_debit_logs
+	customer_paid_log:references
+	customer_order:references
+	beforpaid:integer
+	paid:integer
+	afterpaid:integer
 
 - warehouse_receipts
 	warehouse:references
@@ -123,7 +185,7 @@
 	product:references
 	product_unit:references
 	order_quantity:integer
-	real_quantity:interger
+	real_quantity:integer
 	price:integer
 	reduce_price:integer
 	reduce_percent:integer
@@ -185,68 +247,6 @@
 	increase_quantity:integer
 	decrease_quantity:integer
 	warehouse_moverment_type:references
-
-- customers
-	code
-	title
-	address
-	phone
-	fax
-	email
-	taxcode
-	debit:integer
-	visible:boolean
-
-- customer_groups
-	title
-	description:text
-	reduce_percent:integer
-	visible:boolean
-
-- customer_group_associations
-	customer:references
-	customer:group:references
-
-- customer_orders
-	customer:references
-	total_excl:integer
-	total_incl:integer
-	reduce_price:integer
-	reduce_percent:integer
-	total_reduced:integer
-	prepaid:integer
-	created:datetime
-	status:string
-	note:text
-
-- customer_order_details
-	customer_order:references
-	warehouse:references
-	product:references
-	product_unit:references
-	quanity:integer
-	price:integer
-	subtotal:integer
-	reduce_price:integer
-	reduce_percent:integer
-	tax:integer
-	subtotal_reduced:integer
-	subtotal_taxincl:integer
-	note:text
-
-- customer_paid_logs
-	customer:references
-	beforepaid:integer
-	paid:integer
-	afterpaid:integer
-	note:text
-
-- customer_debit_logs
-	customer_paid_log:references
-	customer_order:references
-	beforpaid:integer
-	paid:integer
-	afterpaid:integer
 
 
 

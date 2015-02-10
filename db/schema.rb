@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206073044) do
+ActiveRecord::Schema.define(version: 20150209103614) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -39,6 +39,89 @@ ActiveRecord::Schema.define(version: 20150206073044) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
   end
+
+  create_table "customer_group_associations", force: :cascade do |t|
+    t.integer  "customer_id",       limit: 4
+    t.integer  "customer_group_id", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "customer_group_associations", ["customer_group_id"], name: "index_customer_group_associations_on_customer_group_id", using: :btree
+  add_index "customer_group_associations", ["customer_id"], name: "index_customer_group_associations_on_customer_id", using: :btree
+
+  create_table "customer_groups", force: :cascade do |t|
+    t.string   "title",          limit: 255
+    t.text     "description",    limit: 65535
+    t.integer  "reduce_percent", limit: 4,     default: 0
+    t.boolean  "visible",        limit: 1,     default: true
+    t.integer  "creator_id",     limit: 4
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "customer_groups", ["creator_id"], name: "index_customer_groups_on_creator_id", using: :btree
+
+  create_table "customer_order_details", force: :cascade do |t|
+    t.integer  "customer_order_id", limit: 4
+    t.integer  "warehouse_id",      limit: 4
+    t.integer  "product_id",        limit: 4
+    t.integer  "product_unit_id",   limit: 4
+    t.integer  "quanity",           limit: 4,     default: 0
+    t.integer  "price",             limit: 4,     default: 0
+    t.integer  "reduce_price",      limit: 4,     default: 0
+    t.integer  "reduce_percent",    limit: 4,     default: 0
+    t.integer  "tax",               limit: 4,     default: 0
+    t.integer  "subtotal",          limit: 4,     default: 0
+    t.integer  "subtotal_reduced",  limit: 4,     default: 0
+    t.integer  "subtotal_taxincl",  limit: 4,     default: 0
+    t.text     "note",              limit: 65535
+    t.integer  "creator_id",        limit: 4
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "customer_order_details", ["creator_id"], name: "index_customer_order_details_on_creator_id", using: :btree
+  add_index "customer_order_details", ["customer_order_id"], name: "index_customer_order_details_on_customer_order_id", using: :btree
+  add_index "customer_order_details", ["product_id"], name: "index_customer_order_details_on_product_id", using: :btree
+  add_index "customer_order_details", ["product_unit_id"], name: "index_customer_order_details_on_product_unit_id", using: :btree
+  add_index "customer_order_details", ["warehouse_id"], name: "index_customer_order_details_on_warehouse_id", using: :btree
+
+  create_table "customer_orders", force: :cascade do |t|
+    t.integer  "customer_id",    limit: 4
+    t.integer  "total_excl",     limit: 4,     default: 0
+    t.integer  "total_incl",     limit: 4,     default: 0
+    t.integer  "reduce_price",   limit: 4,     default: 0
+    t.integer  "reduce_percent", limit: 4,     default: 0
+    t.integer  "total_reduced",  limit: 4,     default: 0
+    t.integer  "prepaid",        limit: 4,     default: 0
+    t.datetime "created"
+    t.integer  "status",         limit: 4,     default: 0
+    t.text     "note",           limit: 65535
+    t.integer  "creator_id",     limit: 4
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "customer_orders", ["creator_id"], name: "index_customer_orders_on_creator_id", using: :btree
+  add_index "customer_orders", ["customer_id"], name: "index_customer_orders_on_customer_id", using: :btree
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "code",       limit: 255
+    t.string   "title",      limit: 255
+    t.string   "address",    limit: 255
+    t.string   "phone",      limit: 255
+    t.string   "fax",        limit: 255
+    t.string   "email",      limit: 255
+    t.string   "taxcode",    limit: 255
+    t.integer  "debit",      limit: 4,   default: 0
+    t.boolean  "visible",    limit: 1,   default: true
+    t.integer  "creator_id", limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "customers", ["creator_id"], name: "index_customers_on_creator_id", using: :btree
 
   create_table "permissions", force: :cascade do |t|
     t.integer  "user_role_id",  limit: 4
@@ -120,6 +203,44 @@ ActiveRecord::Schema.define(version: 20150206073044) do
   add_index "products", ["creator_id"], name: "index_products_on_creator_id", using: :btree
   add_index "products", ["default_unit_id"], name: "index_products_on_default_unit_id", using: :btree
 
+  create_table "supplier_order_details", force: :cascade do |t|
+    t.integer  "supplier_order_id", limit: 4
+    t.integer  "warehouse_id",      limit: 4
+    t.integer  "product_id",        limit: 4
+    t.integer  "product_unit_id",   limit: 4
+    t.integer  "quanity",           limit: 4,     default: 0
+    t.integer  "price",             limit: 4,     default: 0
+    t.integer  "subtotal",          limit: 4,     default: 0
+    t.integer  "reduce_price",      limit: 4,     default: 0
+    t.integer  "reduce_percent",    limit: 4,     default: 0
+    t.integer  "tax",               limit: 4,     default: 0
+    t.integer  "subtotal_reduced",  limit: 4,     default: 0
+    t.integer  "subtotal_taxincl",  limit: 4,     default: 0
+    t.text     "note",              limit: 65535
+    t.integer  "creator_id",        limit: 4
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "supplier_order_details", ["creator_id"], name: "index_supplier_order_details_on_creator_id", using: :btree
+  add_index "supplier_order_details", ["product_id"], name: "index_supplier_order_details_on_product_id", using: :btree
+  add_index "supplier_order_details", ["product_unit_id"], name: "index_supplier_order_details_on_product_unit_id", using: :btree
+  add_index "supplier_order_details", ["supplier_order_id"], name: "index_supplier_order_details_on_supplier_order_id", using: :btree
+  add_index "supplier_order_details", ["warehouse_id"], name: "index_supplier_order_details_on_warehouse_id", using: :btree
+
+  create_table "supplier_order_paid_logs", force: :cascade do |t|
+    t.integer  "supplier_paid_log_id", limit: 4
+    t.integer  "supplier_order_id",    limit: 4
+    t.integer  "beforpaid",            limit: 4, default: 0
+    t.integer  "paid",                 limit: 4, default: 0
+    t.integer  "afterpaid",            limit: 4, default: 0
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  add_index "supplier_order_paid_logs", ["supplier_order_id"], name: "index_supplier_order_paid_logs_on_supplier_order_id", using: :btree
+  add_index "supplier_order_paid_logs", ["supplier_paid_log_id"], name: "index_supplier_order_paid_logs_on_supplier_paid_log_id", using: :btree
+
   create_table "supplier_orders", force: :cascade do |t|
     t.integer  "supplier_id",    limit: 4
     t.integer  "total_excl",     limit: 4,     default: 0
@@ -138,6 +259,35 @@ ActiveRecord::Schema.define(version: 20150206073044) do
 
   add_index "supplier_orders", ["creator_id"], name: "index_supplier_orders_on_creator_id", using: :btree
   add_index "supplier_orders", ["supplier_id"], name: "index_supplier_orders_on_supplier_id", using: :btree
+
+  create_table "supplier_paid_logs", force: :cascade do |t|
+    t.integer  "supplier_id", limit: 4
+    t.integer  "beforepaid",  limit: 4,     default: 0
+    t.integer  "paid",        limit: 4,     default: 0
+    t.integer  "afterpaid",   limit: 4,     default: 0
+    t.text     "note",        limit: 65535
+    t.integer  "creator_id",  limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "supplier_paid_logs", ["creator_id"], name: "index_supplier_paid_logs_on_creator_id", using: :btree
+  add_index "supplier_paid_logs", ["supplier_id"], name: "index_supplier_paid_logs_on_supplier_id", using: :btree
+
+  create_table "supplier_product_associations", force: :cascade do |t|
+    t.integer  "supplier_id",     limit: 4
+    t.integer  "product_id",      limit: 4
+    t.integer  "product_unit_id", limit: 4
+    t.integer  "price",           limit: 4, default: 0
+    t.integer  "creator_id",      limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "supplier_product_associations", ["creator_id"], name: "index_supplier_product_associations_on_creator_id", using: :btree
+  add_index "supplier_product_associations", ["product_id"], name: "index_supplier_product_associations_on_product_id", using: :btree
+  add_index "supplier_product_associations", ["product_unit_id"], name: "index_supplier_product_associations_on_product_unit_id", using: :btree
+  add_index "supplier_product_associations", ["supplier_id"], name: "index_supplier_product_associations_on_supplier_id", using: :btree
 
   create_table "suppliers", force: :cascade do |t|
     t.string   "code",       limit: 255
@@ -197,6 +347,68 @@ ActiveRecord::Schema.define(version: 20150206073044) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  create_table "warehouse_bills", force: :cascade do |t|
+    t.integer  "warehouse_id",      limit: 4
+    t.integer  "customer_order_id", limit: 4
+    t.integer  "total_excl",        limit: 4
+    t.integer  "total_incl",        limit: 4
+    t.integer  "reduce_price",      limit: 4
+    t.integer  "reduce_percent",    limit: 4
+    t.integer  "total_reduced",     limit: 4
+    t.integer  "status",            limit: 4
+    t.datetime "created"
+    t.integer  "creator_id",        limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "warehouse_bills", ["creator_id"], name: "index_warehouse_bills_on_creator_id", using: :btree
+  add_index "warehouse_bills", ["customer_order_id"], name: "index_warehouse_bills_on_customer_order_id", using: :btree
+  add_index "warehouse_bills", ["warehouse_id"], name: "index_warehouse_bills_on_warehouse_id", using: :btree
+
+  create_table "warehouse_receipt_details", force: :cascade do |t|
+    t.integer  "warehouse_receipt_id", limit: 4
+    t.integer  "product_id",           limit: 4
+    t.integer  "product_unit_id",      limit: 4
+    t.integer  "order_quantity",       limit: 4,     default: 0
+    t.integer  "real_quantity",        limit: 4,     default: 0
+    t.integer  "price",                limit: 4,     default: 0
+    t.integer  "reduce_price",         limit: 4,     default: 0
+    t.integer  "reduce_percent",       limit: 4,     default: 0
+    t.integer  "tax",                  limit: 4,     default: 0
+    t.integer  "subtotal",             limit: 4,     default: 0
+    t.integer  "subtotal_reduced",     limit: 4,     default: 0
+    t.integer  "subtotal_taxincl",     limit: 4,     default: 0
+    t.text     "note",                 limit: 65535
+    t.integer  "creator_id",           limit: 4
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+  end
+
+  add_index "warehouse_receipt_details", ["creator_id"], name: "index_warehouse_receipt_details_on_creator_id", using: :btree
+  add_index "warehouse_receipt_details", ["product_id"], name: "index_warehouse_receipt_details_on_product_id", using: :btree
+  add_index "warehouse_receipt_details", ["product_unit_id"], name: "index_warehouse_receipt_details_on_product_unit_id", using: :btree
+  add_index "warehouse_receipt_details", ["warehouse_receipt_id"], name: "index_warehouse_receipt_details_on_warehouse_receipt_id", using: :btree
+
+  create_table "warehouse_receipts", force: :cascade do |t|
+    t.integer  "warehouse_id",      limit: 4
+    t.integer  "supplier_order_id", limit: 4
+    t.integer  "total_excl",        limit: 4, default: 0
+    t.integer  "total_incl",        limit: 4, default: 0
+    t.integer  "reduce_price",      limit: 4, default: 0
+    t.integer  "reduce_percent",    limit: 4, default: 0
+    t.integer  "total_reduced",     limit: 4, default: 0
+    t.integer  "status",            limit: 4, default: 0
+    t.datetime "created"
+    t.integer  "creator_id",        limit: 4
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  add_index "warehouse_receipts", ["creator_id"], name: "index_warehouse_receipts_on_creator_id", using: :btree
+  add_index "warehouse_receipts", ["supplier_order_id"], name: "index_warehouse_receipts_on_supplier_order_id", using: :btree
+  add_index "warehouse_receipts", ["warehouse_id"], name: "index_warehouse_receipts_on_warehouse_id", using: :btree
+
   create_table "warehouses", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
@@ -211,6 +423,17 @@ ActiveRecord::Schema.define(version: 20150206073044) do
 
   add_index "warehouses", ["creator_id"], name: "index_warehouses_on_creator_id", using: :btree
 
+  add_foreign_key "customer_group_associations", "customer_groups"
+  add_foreign_key "customer_group_associations", "customers"
+  add_foreign_key "customer_groups", "users", column: "creator_id"
+  add_foreign_key "customer_order_details", "customer_orders"
+  add_foreign_key "customer_order_details", "product_units"
+  add_foreign_key "customer_order_details", "products"
+  add_foreign_key "customer_order_details", "users", column: "creator_id"
+  add_foreign_key "customer_order_details", "warehouses"
+  add_foreign_key "customer_orders", "customers"
+  add_foreign_key "customer_orders", "users", column: "creator_id"
+  add_foreign_key "customers", "users", column: "creator_id"
   add_foreign_key "permissions", "user_roles"
   add_foreign_key "product_categories", "product_categories", column: "parent_id"
   add_foreign_key "product_categories", "users", column: "creator_id"
@@ -222,9 +445,30 @@ ActiveRecord::Schema.define(version: 20150206073044) do
   add_foreign_key "product_units", "users", column: "creator_id"
   add_foreign_key "products", "product_units", column: "default_unit_id"
   add_foreign_key "products", "users", column: "creator_id"
+  add_foreign_key "supplier_order_details", "product_units"
+  add_foreign_key "supplier_order_details", "products"
+  add_foreign_key "supplier_order_details", "supplier_orders"
+  add_foreign_key "supplier_order_details", "users", column: "creator_id"
+  add_foreign_key "supplier_order_details", "warehouses"
+  add_foreign_key "supplier_order_paid_logs", "supplier_orders"
+  add_foreign_key "supplier_order_paid_logs", "supplier_paid_logs"
   add_foreign_key "supplier_orders", "suppliers"
   add_foreign_key "supplier_orders", "users", column: "creator_id"
+  add_foreign_key "supplier_paid_logs", "suppliers"
+  add_foreign_key "supplier_paid_logs", "users", column: "creator_id"
+  add_foreign_key "supplier_product_associations", "product_units"
+  add_foreign_key "supplier_product_associations", "products"
+  add_foreign_key "supplier_product_associations", "suppliers"
+  add_foreign_key "supplier_product_associations", "users", column: "creator_id"
   add_foreign_key "suppliers", "users", column: "creator_id"
   add_foreign_key "users", "user_roles"
+  add_foreign_key "warehouse_bills", "warehouses"
+  add_foreign_key "warehouse_receipt_details", "product_units"
+  add_foreign_key "warehouse_receipt_details", "products"
+  add_foreign_key "warehouse_receipt_details", "users", column: "creator_id"
+  add_foreign_key "warehouse_receipt_details", "warehouse_receipts"
+  add_foreign_key "warehouse_receipts", "supplier_orders"
+  add_foreign_key "warehouse_receipts", "users", column: "creator_id"
+  add_foreign_key "warehouse_receipts", "warehouses"
   add_foreign_key "warehouses", "users", column: "creator_id"
 end

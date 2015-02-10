@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Supplier:</strong>
+  <%= @supplier_product_association.supplier %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @supplier_product_association.product %>
+</p>
+
+<p>
+  <strong>Product unit:</strong>
+  <%= @supplier_product_association.product_unit %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @supplier_product_association.price %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @supplier_product_association.creator %>
+</p>
+
+<%= link_to 'Edit', edit_supplier_product_association_path(@supplier_product_association) %> |
+<%= link_to 'Back', supplier_product_associations_path %>

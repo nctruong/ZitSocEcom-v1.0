@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 
+  total_excl: 1
+  total_incl: 1
+  reduce_price: 1
+  reduce_percent: 1
+  total_reduced: 1
+  prepaid: 1
+  created: 2015-02-09 17:34:36
+  status: 1
+  note: MyText
+  creator_id: 
+
+two:
+  customer_id: 
+  total_excl: 1
+  total_incl: 1
+  reduce_price: 1
+  reduce_percent: 1
+  total_reduced: 1
+  prepaid: 1
+  created: 2015-02-09 17:34:36
+  status: 1
+  note: MyText
+  creator_id: 

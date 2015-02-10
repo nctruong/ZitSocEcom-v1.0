@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Customer Orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Total excl</th>
+      <th>Total incl</th>
+      <th>Reduce price</th>
+      <th>Reduce percent</th>
+      <th>Total reduced</th>
+      <th>Prepaid</th>
+      <th>Created</th>
+      <th>Status</th>
+      <th>Note</th>
+      <th>Creator</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customer_orders.each do |customer_order| %>
+      <tr>
+        <td><%= customer_order.customer %></td>
+        <td><%= customer_order.total_excl %></td>
+        <td><%= customer_order.total_incl %></td>
+        <td><%= customer_order.reduce_price %></td>
+        <td><%= customer_order.reduce_percent %></td>
+        <td><%= customer_order.total_reduced %></td>
+        <td><%= customer_order.prepaid %></td>
+        <td><%= customer_order.created %></td>
+        <td><%= customer_order.status %></td>
+        <td><%= customer_order.note %></td>
+        <td><%= customer_order.creator %></td>
+        <td><%= link_to 'Show', customer_order %></td>
+        <td><%= link_to 'Edit', edit_customer_order_path(customer_order) %></td>
+        <td><%= link_to 'Destroy', customer_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customer order', new_customer_order_path %>

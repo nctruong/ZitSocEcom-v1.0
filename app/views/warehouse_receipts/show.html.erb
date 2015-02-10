@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Warehouse:</strong>
+  <%= @warehouse_receipt.warehouse %>
+</p>
+
+<p>
+  <strong>Supplier order:</strong>
+  <%= @warehouse_receipt.supplier_order %>
+</p>
+
+<p>
+  <strong>Total excl:</strong>
+  <%= @warehouse_receipt.total_excl %>
+</p>
+
+<p>
+  <strong>Total incl:</strong>
+  <%= @warehouse_receipt.total_incl %>
+</p>
+
+<p>
+  <strong>Reduce price:</strong>
+  <%= @warehouse_receipt.reduce_price %>
+</p>
+
+<p>
+  <strong>Reduce percent:</strong>
+  <%= @warehouse_receipt.reduce_percent %>
+</p>
+
+<p>
+  <strong>Total reduced:</strong>
+  <%= @warehouse_receipt.total_reduced %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @warehouse_receipt.status %>
+</p>
+
+<p>
+  <strong>Created:</strong>
+  <%= @warehouse_receipt.created %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @warehouse_receipt.creator %>
+</p>
+
+<%= link_to 'Edit', edit_warehouse_receipt_path(@warehouse_receipt) %> |
+<%= link_to 'Back', warehouse_receipts_path %>

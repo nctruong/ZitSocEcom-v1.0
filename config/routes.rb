@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
   
+  resources :customer_orders
+
+  resources :customer_groups
+
+  resources :customers
+
+  resources :warehouse_receipts
+
+  resources :supplier_product_associations
+
   resources :supplier_orders
 
   resources :suppliers

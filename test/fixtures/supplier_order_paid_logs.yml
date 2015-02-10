@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  supplier_paid_log_id: 
+  supplier_order_id: 
+  beforpaid: 1
+  paid: 1
+  afterpaid: 1
+
+two:
+  supplier_paid_log_id: 
+  supplier_order_id: 
+  beforpaid: 1
+  paid: 1
+  afterpaid: 1

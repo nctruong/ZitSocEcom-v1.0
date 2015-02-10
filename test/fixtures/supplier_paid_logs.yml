@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  supplier_id: 
+  beforepaid: 1
+  paid: 1
+  afterpaid: 1
+  note: MyText
+  creator_id: 
+
+two:
+  supplier_id: 
+  beforepaid: 1
+  paid: 1
+  afterpaid: 1
+  note: MyText
+  creator_id: 
