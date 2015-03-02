@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Customer Paid Logs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Beforepaid</th>
+      <th>Paid</th>
+      <th>Afterpaid</th>
+      <th>Dateofpayment</th>
+      <th>Note</th>
+      <th>Creator</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customer_paid_logs.each do |customer_paid_log| %>
+      <tr>
+        <td><%= customer_paid_log.customer %></td>
+        <td><%= customer_paid_log.beforepaid %></td>
+        <td><%= customer_paid_log.paid %></td>
+        <td><%= customer_paid_log.afterpaid %></td>
+        <td><%= customer_paid_log.dateofpayment %></td>
+        <td><%= customer_paid_log.note %></td>
+        <td><%= customer_paid_log.creator %></td>
+        <td><%= link_to 'Show', customer_paid_log %></td>
+        <td><%= link_to 'Edit', edit_customer_paid_log_path(customer_paid_log) %></td>
+        <td><%= link_to 'Destroy', customer_paid_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customer paid log', new_customer_paid_log_path %>

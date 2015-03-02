@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209103614) do
+ActiveRecord::Schema.define(version: 20150213045737) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -105,6 +105,21 @@ ActiveRecord::Schema.define(version: 20150209103614) do
 
   add_index "customer_orders", ["creator_id"], name: "index_customer_orders_on_creator_id", using: :btree
   add_index "customer_orders", ["customer_id"], name: "index_customer_orders_on_customer_id", using: :btree
+
+  create_table "customer_paid_logs", force: :cascade do |t|
+    t.integer  "customer_id",   limit: 4
+    t.integer  "beforepaid",    limit: 4,     default: 0
+    t.integer  "paid",          limit: 4,     default: 0
+    t.integer  "afterpaid",     limit: 4,     default: 0
+    t.datetime "dateofpayment"
+    t.text     "note",          limit: 65535
+    t.integer  "creator_id",    limit: 4
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  add_index "customer_paid_logs", ["creator_id"], name: "index_customer_paid_logs_on_creator_id", using: :btree
+  add_index "customer_paid_logs", ["customer_id"], name: "index_customer_paid_logs_on_customer_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.string   "code",       limit: 255
@@ -261,14 +276,15 @@ ActiveRecord::Schema.define(version: 20150209103614) do
   add_index "supplier_orders", ["supplier_id"], name: "index_supplier_orders_on_supplier_id", using: :btree
 
   create_table "supplier_paid_logs", force: :cascade do |t|
-    t.integer  "supplier_id", limit: 4
-    t.integer  "beforepaid",  limit: 4,     default: 0
-    t.integer  "paid",        limit: 4,     default: 0
-    t.integer  "afterpaid",   limit: 4,     default: 0
-    t.text     "note",        limit: 65535
-    t.integer  "creator_id",  limit: 4
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.integer  "supplier_id",   limit: 4
+    t.integer  "beforepaid",    limit: 4,     default: 0
+    t.integer  "paid",          limit: 4,     default: 0
+    t.integer  "afterpaid",     limit: 4,     default: 0
+    t.text     "note",          limit: 65535
+    t.integer  "creator_id",    limit: 4
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.datetime "dateofpayment"
   end
 
   add_index "supplier_paid_logs", ["creator_id"], name: "index_supplier_paid_logs_on_creator_id", using: :btree
@@ -433,6 +449,8 @@ ActiveRecord::Schema.define(version: 20150209103614) do
   add_foreign_key "customer_order_details", "warehouses"
   add_foreign_key "customer_orders", "customers"
   add_foreign_key "customer_orders", "users", column: "creator_id"
+  add_foreign_key "customer_paid_logs", "customers"
+  add_foreign_key "customer_paid_logs", "users", column: "creator_id"
   add_foreign_key "customers", "users", column: "creator_id"
   add_foreign_key "permissions", "user_roles"
   add_foreign_key "product_categories", "product_categories", column: "parent_id"

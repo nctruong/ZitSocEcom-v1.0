@@ -161,7 +161,7 @@
 	afterpaid:integer
 	note:text
 
-- customer_debit_logs
+- customer_order_paid_logs
 	customer_paid_log:references
 	customer_order:references
 	beforpaid:integer

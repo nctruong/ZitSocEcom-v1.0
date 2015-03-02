@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :customer_paid_logs
+
   resources :customer_orders
 
   resources :customer_groups

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @customer_paid_log.customer %>
+</p>
+
+<p>
+  <strong>Beforepaid:</strong>
+  <%= @customer_paid_log.beforepaid %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @customer_paid_log.paid %>
+</p>
+
+<p>
+  <strong>Afterpaid:</strong>
+  <%= @customer_paid_log.afterpaid %>
+</p>
+
+<p>
+  <strong>Dateofpayment:</strong>
+  <%= @customer_paid_log.dateofpayment %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @customer_paid_log.note %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @customer_paid_log.creator %>
+</p>
+
+<%= link_to 'Edit', edit_customer_paid_log_path(@customer_paid_log) %> |
+<%= link_to 'Back', customer_paid_logs_path %>
