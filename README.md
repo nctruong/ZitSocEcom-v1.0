@@ -95,7 +95,7 @@
 - supplier_order_paid_logs
 	supplier_paid_log:references
 	supplier_order:references
-	beforpaid:integer
+	beforepaid:integer
 	paid:integer
 	afterpaid:integer
 
@@ -164,7 +164,7 @@
 - customer_order_paid_logs
 	customer_paid_log:references
 	customer_order:references
-	beforpaid:integer
+	beforepaid:integer
 	paid:integer
 	afterpaid:integer
 
@@ -204,10 +204,11 @@
 	reduce_percent:integer
 	total_reduced:integer
 	status:integer
+	note:text
 	created:datetime
 
 - warehouse_bill_details
-	warehouse_receipt:references
+	warehouse_bill:references
 	product:references
 	product_unit:references
 	order_quantity:integer

@@ -1,0 +1,2 @@
+module WarehouseBillsHelper
+end

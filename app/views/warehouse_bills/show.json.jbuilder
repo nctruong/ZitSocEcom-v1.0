@@ -1,0 +1,1 @@
+json.extract! @warehouse_bill, :id, :warehouse_id, :customer_order_id, :total_excl, :total_incl, :reduce_price, :reduce_percent, :total_reduced, :status, :note, :created, :creator_id, :created_at, :updated_at

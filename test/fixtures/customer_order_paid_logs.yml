@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_paid_log_id: 
+  customer_order_id: 
+  beforepaid: 1
+  paid: 1
+  afterpaid: 1
+
+two:
+  customer_paid_log_id: 
+  customer_order_id: 
+  beforepaid: 1
+  paid: 1
+  afterpaid: 1

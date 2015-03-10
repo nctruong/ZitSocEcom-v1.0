@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Warehouse:</strong>
+  <%= @warehouse_bill.warehouse %>
+</p>
+
+<p>
+  <strong>Customer order:</strong>
+  <%= @warehouse_bill.customer_order %>
+</p>
+
+<p>
+  <strong>Total excl:</strong>
+  <%= @warehouse_bill.total_excl %>
+</p>
+
+<p>
+  <strong>Total incl:</strong>
+  <%= @warehouse_bill.total_incl %>
+</p>
+
+<p>
+  <strong>Reduce price:</strong>
+  <%= @warehouse_bill.reduce_price %>
+</p>
+
+<p>
+  <strong>Reduce percent:</strong>
+  <%= @warehouse_bill.reduce_percent %>
+</p>
+
+<p>
+  <strong>Total reduced:</strong>
+  <%= @warehouse_bill.total_reduced %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @warehouse_bill.status %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @warehouse_bill.note %>
+</p>
+
+<p>
+  <strong>Created:</strong>
+  <%= @warehouse_bill.created %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @warehouse_bill.creator %>
+</p>
+
+<%= link_to 'Edit', edit_warehouse_bill_path(@warehouse_bill) %> |
+<%= link_to 'Back', warehouse_bills_path %>

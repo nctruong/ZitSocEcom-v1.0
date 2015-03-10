@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  warehouse_bill_id: 
+  product_id: 
+  product_unit_id: 
+  order_quantity: 1
+  real_quanity: 1
+  price: 1
+  reduce_price: 1
+  reduce_percent: 1
+  tax: 1
+  subtotal: 1
+  subtotal_reduced: 1
+  subtotal_taxincl: 1
+  note: MyText
+
+two:
+  warehouse_bill_id: 
+  product_id: 
+  product_unit_id: 
+  order_quantity: 1
+  real_quanity: 1
+  price: 1
+  reduce_price: 1
+  reduce_percent: 1
+  tax: 1
+  subtotal: 1
+  subtotal_reduced: 1
+  subtotal_taxincl: 1
+  note: MyText

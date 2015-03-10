@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213045737) do
+ActiveRecord::Schema.define(version: 20150302104506) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -86,6 +86,19 @@ ActiveRecord::Schema.define(version: 20150213045737) do
   add_index "customer_order_details", ["product_id"], name: "index_customer_order_details_on_product_id", using: :btree
   add_index "customer_order_details", ["product_unit_id"], name: "index_customer_order_details_on_product_unit_id", using: :btree
   add_index "customer_order_details", ["warehouse_id"], name: "index_customer_order_details_on_warehouse_id", using: :btree
+
+  create_table "customer_order_paid_logs", force: :cascade do |t|
+    t.integer  "customer_paid_log_id", limit: 4
+    t.integer  "customer_order_id",    limit: 4
+    t.integer  "beforepaid",           limit: 4, default: 0
+    t.integer  "paid",                 limit: 4, default: 0
+    t.integer  "afterpaid",            limit: 4, default: 0
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  add_index "customer_order_paid_logs", ["customer_order_id"], name: "index_customer_order_paid_logs_on_customer_order_id", using: :btree
+  add_index "customer_order_paid_logs", ["customer_paid_log_id"], name: "index_customer_order_paid_logs_on_customer_paid_log_id", using: :btree
 
   create_table "customer_orders", force: :cascade do |t|
     t.integer  "customer_id",    limit: 4
@@ -246,7 +259,7 @@ ActiveRecord::Schema.define(version: 20150213045737) do
   create_table "supplier_order_paid_logs", force: :cascade do |t|
     t.integer  "supplier_paid_log_id", limit: 4
     t.integer  "supplier_order_id",    limit: 4
-    t.integer  "beforpaid",            limit: 4, default: 0
+    t.integer  "beforepaid",           limit: 4, default: 0
     t.integer  "paid",                 limit: 4, default: 0
     t.integer  "afterpaid",            limit: 4, default: 0
     t.datetime "created_at",                                 null: false
@@ -363,19 +376,42 @@ ActiveRecord::Schema.define(version: 20150213045737) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  create_table "warehouse_bill_details", force: :cascade do |t|
+    t.integer  "warehouse_bill_id", limit: 4
+    t.integer  "product_id",        limit: 4
+    t.integer  "product_unit_id",   limit: 4
+    t.integer  "order_quantity",    limit: 4
+    t.integer  "real_quanity",      limit: 4
+    t.integer  "price",             limit: 4
+    t.integer  "reduce_price",      limit: 4
+    t.integer  "reduce_percent",    limit: 4
+    t.integer  "tax",               limit: 4
+    t.integer  "subtotal",          limit: 4
+    t.integer  "subtotal_reduced",  limit: 4
+    t.integer  "subtotal_taxincl",  limit: 4
+    t.text     "note",              limit: 65535
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "warehouse_bill_details", ["product_id"], name: "index_warehouse_bill_details_on_product_id", using: :btree
+  add_index "warehouse_bill_details", ["product_unit_id"], name: "index_warehouse_bill_details_on_product_unit_id", using: :btree
+  add_index "warehouse_bill_details", ["warehouse_bill_id"], name: "index_warehouse_bill_details_on_warehouse_bill_id", using: :btree
+
   create_table "warehouse_bills", force: :cascade do |t|
     t.integer  "warehouse_id",      limit: 4
     t.integer  "customer_order_id", limit: 4
-    t.integer  "total_excl",        limit: 4
-    t.integer  "total_incl",        limit: 4
-    t.integer  "reduce_price",      limit: 4
-    t.integer  "reduce_percent",    limit: 4
-    t.integer  "total_reduced",     limit: 4
-    t.integer  "status",            limit: 4
+    t.integer  "total_excl",        limit: 4,     default: 0
+    t.integer  "total_incl",        limit: 4,     default: 0
+    t.integer  "reduce_price",      limit: 4,     default: 0
+    t.integer  "reduce_percent",    limit: 4,     default: 0
+    t.integer  "total_reduced",     limit: 4,     default: 0
+    t.integer  "status",            limit: 4,     default: 0
+    t.text     "note",              limit: 65535
     t.datetime "created"
     t.integer  "creator_id",        limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   add_index "warehouse_bills", ["creator_id"], name: "index_warehouse_bills_on_creator_id", using: :btree
@@ -447,6 +483,8 @@ ActiveRecord::Schema.define(version: 20150213045737) do
   add_foreign_key "customer_order_details", "products"
   add_foreign_key "customer_order_details", "users", column: "creator_id"
   add_foreign_key "customer_order_details", "warehouses"
+  add_foreign_key "customer_order_paid_logs", "customer_orders"
+  add_foreign_key "customer_order_paid_logs", "customer_paid_logs"
   add_foreign_key "customer_orders", "customers"
   add_foreign_key "customer_orders", "users", column: "creator_id"
   add_foreign_key "customer_paid_logs", "customers"
@@ -480,6 +518,11 @@ ActiveRecord::Schema.define(version: 20150213045737) do
   add_foreign_key "supplier_product_associations", "users", column: "creator_id"
   add_foreign_key "suppliers", "users", column: "creator_id"
   add_foreign_key "users", "user_roles"
+  add_foreign_key "warehouse_bill_details", "product_units"
+  add_foreign_key "warehouse_bill_details", "products"
+  add_foreign_key "warehouse_bill_details", "warehouse_bills"
+  add_foreign_key "warehouse_bills", "customer_orders"
+  add_foreign_key "warehouse_bills", "users", column: "creator_id"
   add_foreign_key "warehouse_bills", "warehouses"
   add_foreign_key "warehouse_receipt_details", "product_units"
   add_foreign_key "warehouse_receipt_details", "products"

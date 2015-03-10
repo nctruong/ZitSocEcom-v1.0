@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Warehouse Bills</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Warehouse</th>
+      <th>Customer order</th>
+      <th>Total excl</th>
+      <th>Total incl</th>
+      <th>Reduce price</th>
+      <th>Reduce percent</th>
+      <th>Total reduced</th>
+      <th>Status</th>
+      <th>Note</th>
+      <th>Created</th>
+      <th>Creator</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @warehouse_bills.each do |warehouse_bill| %>
+      <tr>
+        <td><%= warehouse_bill.warehouse %></td>
+        <td><%= warehouse_bill.customer_order %></td>
+        <td><%= warehouse_bill.total_excl %></td>
+        <td><%= warehouse_bill.total_incl %></td>
+        <td><%= warehouse_bill.reduce_price %></td>
+        <td><%= warehouse_bill.reduce_percent %></td>
+        <td><%= warehouse_bill.total_reduced %></td>
+        <td><%= warehouse_bill.status %></td>
+        <td><%= warehouse_bill.note %></td>
+        <td><%= warehouse_bill.created %></td>
+        <td><%= warehouse_bill.creator %></td>
+        <td><%= link_to 'Show', warehouse_bill %></td>
+        <td><%= link_to 'Edit', edit_warehouse_bill_path(warehouse_bill) %></td>
+        <td><%= link_to 'Destroy', warehouse_bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Warehouse bill', new_warehouse_bill_path %>
